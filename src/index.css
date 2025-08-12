@@ -1,5 +1,9 @@
+body {
+  margin: 0;
+}
+
 .header {
-  background-color: #1d1d1d;
+  background-color: #131313;
   display: flex;
   justify-content: space-between;
   padding: 24px;

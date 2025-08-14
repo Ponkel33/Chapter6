@@ -9,8 +9,8 @@ return (
       {
         posts.map(post => {
           return (
-            <Link to={`/post/${post.id}`}>
             <li key={post.id} className="border border-gray-300 p-2 my-2">
+            <Link to={`/posts/${post.id}`}>
               <div className="text-gray-500 text-sm">{new Date(post.createdAt).toLocaleDateString()}</div>
               <div className="flex justify-end">
               {post.categories.map(category => {
@@ -21,8 +21,8 @@ return (
               </div>
               <div className="text-2xl font-bold my-2">{post.title}</div>
               <div className="text-sm my-2 text-overflow-ellipsis line-clamp-2" dangerouslySetInnerHTML={{ __html: post.content }}></div>
-            </li>
             </Link>
+            </li>
           );
         })
       }

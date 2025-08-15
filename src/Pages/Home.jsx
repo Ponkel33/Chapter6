@@ -5,17 +5,26 @@ import { useState, useEffect } from 'react';
 
 export const Home = () => {
   const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const fetcher = async () => {
+      setLoading(true)
       const res = await fetch("https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/posts")
       const data = await res.json()
       setPosts(data.posts)
+      setLoading(false)
     }
 
     fetcher()
   }, [])
 
+
+if (loading) {
+  return (
+    <div className="text-2xl text-center">情報取得中…</div>
+  )
+}
 
 return (
   <div className="max-w-3xl mx-auto my-2 p-2">

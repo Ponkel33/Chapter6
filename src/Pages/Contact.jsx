@@ -65,32 +65,32 @@ export const Contact = () => {
 //送信時
   const handleSubmit = async(e) => {
     e.preventDefault();
-    setSubmitting(true);
 
     if (!validate()) {
-      setSubmitting(false);
       return
     }
 
     try {
-    const response = await fetch('https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        email: email,
-        message: message
+      setSubmitting(true);
+      const response = await fetch('https://1hmfpsvto6.execute-api.ap-northeast-1.amazonaws.com/dev/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          message: message
+        })
       })
-    })
-    if (response.ok) {
-      alert('送信しました。')
-      handleClear()
-      setSubmitting(false);
-    }
+      if (response.ok) {
+        alert('送信しました。')
+        handleClear()
+      }
     } catch (error) {
       setErrors({submit: error.message})
+    }
+    finally {
       setSubmitting(false);
     }
   }
